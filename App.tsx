@@ -1,7 +1,12 @@
-import { Button } from '@rneui/base';
+import { MainNavigation } from '@/navigation/MainNavigation/MainNavigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
-  return <Button title="Hello World!" />;
+  return (
+    <NavigationContainer>
+      <MainNavigation />
+    </NavigationContainer>
+  );
 }
 
 
