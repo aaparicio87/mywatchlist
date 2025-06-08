@@ -15,7 +15,7 @@ const LoginScreen = () => {
     };
 
     return (
-        <View style={[styledGlobal.centerConatiner]}>
+        <View style={[styledGlobal.centerContainer]}>
             <Switch value={open} onValueChange={toggleSwitch} />
         </View>
     )

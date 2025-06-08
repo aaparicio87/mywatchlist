@@ -8,7 +8,7 @@ export const globalStyles = (colors: any) => StyleSheet.create({
         backgroundColor: colors.background
     },
 
-    centerConatiner: {
+    centerContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
