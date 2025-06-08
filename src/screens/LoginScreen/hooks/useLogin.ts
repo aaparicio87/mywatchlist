@@ -42,7 +42,7 @@ export const useLogin = () => {
 
   React.useEffect(() => {
     if (!isSubmitSuccessful) { return }
-    reset({}, { keepValues: true })
+    reset()
   }, [isSubmitSuccessful])
 
   const handleDisplayPassword = () => setDisplayPassword((prevState) => !prevState)
