@@ -11,7 +11,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@assets/*": ["assets/*"],
       "@constants/*": ["constants/*"],
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "contexts/*": ["contexts/*"],
     }
   }
 }

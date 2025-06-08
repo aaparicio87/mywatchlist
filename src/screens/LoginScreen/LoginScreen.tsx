@@ -1,11 +1,22 @@
 import React from 'react'
-import { globalStyles } from '@styles/global-styled'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import { Switch } from '@rneui/base'
+import { useGlobalThemeContextContext } from '@/contexts/ThemeContext/ThemeContext'
+import { useGlobalStyles } from '@/hooks/useGlobalStyled'
 
 const LoginScreen = () => {
+    const { toggleTheme } = useGlobalThemeContextContext();
+    const styledGlobal = useGlobalStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const toggleSwitch = () => {
+        toggleTheme();
+        setOpen((prevState) => !prevState);
+    };
+
     return (
-        <View style={[globalStyles.centerConatiner]}>
-            <Text>LoginScreen</Text>
+        <View style={[styledGlobal.centerConatiner]}>
+            <Switch value={open} onValueChange={toggleSwitch} />
         </View>
     )
 }

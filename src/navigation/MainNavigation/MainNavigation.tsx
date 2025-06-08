@@ -1,8 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { RootStackParamList } from '../types.navigation';
 import { useAuth } from '@/hooks/useAuth';
 import LoginScreen from '@/screens/LoginScreen/LoginScreen';
 import HomeScreen from '@/screens/HomeScreen/HomeScreen';
+import { useGlobalStyles } from '@/hooks/useGlobalStyled';
 
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -10,9 +12,10 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 export const MainNavigation = () => {
 
     const auth = useAuth()
+    const globalStyles = useGlobalStyles()
 
     return (
-        <RootStack.Navigator>
+        <RootStack.Navigator screenOptions={{ contentStyle: globalStyles.background }}>
             {
                 !auth.isLoggedIn ?
                     (
