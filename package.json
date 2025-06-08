@@ -21,10 +21,12 @@
     "expo-system-ui": "^5.0.8",
     "react": "19.0.0",
     "react-native": "0.79.3",
+    "react-native-keyboard-controller": "^1.17.3",
     "react-native-mmkv-storage": "^0.11.2",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
-    "swr": "^2.3.3"
+    "swr": "^2.3.3",
+    "zod": "^3.26.0-canary.20250606T065527"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
