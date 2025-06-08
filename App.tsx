@@ -4,7 +4,7 @@ import { config } from './tamagui.config';
 export default function App() {
   return (
     <TamaguiProvider config={config}>
-      <View width={200} height={200} backgroundColor="$black" />
+      <View width={200} height={200} backgroundColor="$black" borderColor="$white" borderWidth="$size.md" />
     </TamaguiProvider>
   );
 }
