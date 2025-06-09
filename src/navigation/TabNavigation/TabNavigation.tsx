@@ -10,9 +10,9 @@ import {
 } from "@/screens";
 
 import { BottomTabNavigatorParamList } from "../types.navigation";
+import { useGlobalStyles } from "@/hooks/useGlobalStyled";
 
 type PropIcontab = {
-    color: string,
     focused: boolean,
     size: number,
     route: RouteProp<BottomTabNavigatorParamList, keyof BottomTabNavigatorParamList>
@@ -22,7 +22,9 @@ const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 
 export const TabNavigation = () => {
 
-    const handleTabIcon = ({ color, focused, size, route }: PropIcontab): React.ReactNode => {
+    const { colors } = useGlobalStyles()
+
+    const handleTabIcon = ({ focused, size, route }: PropIcontab): React.ReactNode => {
         let iconName: any;
 
         switch (route.name) {
@@ -47,14 +49,17 @@ export const TabNavigation = () => {
                 break;
         }
 
-        return <Ionicons name={iconName} size={size} color={color} />;
+        return <Ionicons name={iconName} size={size} color={colors.primary} />;
     }
     return (
         <Tab.Navigator
             screenOptions={({ route }) => (
                 {
                     headerShown: false,
-                    tabBarIcon: ({ color, focused, size }) => handleTabIcon({ color, focused, size, route })
+                    tabBarIcon: ({ focused, size }) => handleTabIcon({ focused, size, route }),
+                    tabBarStyle: {
+                        backgroundColor: colors.background,
+                    }
                 }
             )}>
             <Tab.Screen
