@@ -1,5 +1,10 @@
 import React from 'react'
-import { Keyboard, Platform, TouchableWithoutFeedback, View } from 'react-native'
+import {
+    Keyboard,
+    Platform,
+    TouchableWithoutFeedback,
+    View
+} from 'react-native'
 import { Button } from '@rneui/themed'
 import { KeyboardAvoidingView } from "react-native-keyboard-controller"
 
@@ -7,10 +12,10 @@ import { KeyboardAvoidingView } from "react-native-keyboard-controller"
 
 import { useGlobalStyles } from '@hooks/useGlobalStyled'
 import { Logo } from '@svg/Logo'
+import { InputTextControlled, ThemeText } from '@/components'
 
 import { useLogin } from './hooks/useLogin'
 import { loginStyles } from './styled'
-import { InputTextControlled, ThemeText } from '@/components'
 
 
 const LoginScreen = () => {
