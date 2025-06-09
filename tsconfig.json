@@ -12,8 +12,9 @@
       "@assets/*": ["assets/*"],
       "@constants/*": ["constants/*"],
       "@styles/*": ["styles/*"],
-      "contexts/*": ["contexts/*"],
-      "@svg/*": ["src/svg/*"]
+      "@contexts/*": ["src/contexts/*"],
+      "@svg/*": ["src/svg/*"],
+      "@reducers/*": ["src/reducers/*"]
     }
   }
 }

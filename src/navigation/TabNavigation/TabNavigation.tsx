@@ -11,6 +11,7 @@ import {
 
 import { BottomTabNavigatorParamList } from "../types.navigation";
 import { useGlobalStyles } from "@/hooks/useGlobalStyled";
+import { WatchListProvider } from "@contexts/WatchListContext/WatchListContext";
 
 type PropIcontab = {
     focused: boolean,
@@ -52,37 +53,37 @@ export const TabNavigation = () => {
         return <Ionicons name={iconName} size={size} color={colors.primary} />;
     }
     return (
-        <Tab.Navigator
-            screenOptions={({ route }) => (
-                {
-                    headerShown: false,
-                    tabBarIcon: ({ focused, size }) => handleTabIcon({ focused, size, route }),
-                    tabBarStyle: {
-                        backgroundColor: colors.background,
+        <WatchListProvider>
+            <Tab.Navigator
+                screenOptions={({ route }) => (
+                    {
+                        headerShown: false,
+                        tabBarIcon: ({ focused, size }) => handleTabIcon({ focused, size, route }),
+                        tabBarStyle: {
+                            backgroundColor: colors.background,
+                        }
                     }
-                }
-            )}>
-            <Tab.Screen
-                name="Watchlist"
-                component={HomeScreen}
-            />
+                )}>
 
-            <Tab.Screen
-                name="Search"
-                component={SearchScreen}
-            />
+                <Tab.Screen
+                    name="Watchlist"
+                    component={HomeScreen}
+                />
 
-            <Tab.Screen
-                name="Favorites"
-                component={FavoritesScreen}
-            />
+                <Tab.Screen
+                    name="Search"
+                    component={SearchScreen}
+                />
 
-            <Tab.Screen
-                name="Settings"
-                component={SettingsScreen}
-            />
-
-
-        </Tab.Navigator>
+                <Tab.Screen
+                    name="Favorites"
+                    component={FavoritesScreen}
+                />
+                <Tab.Screen
+                    name="Settings"
+                    component={SettingsScreen}
+                />
+            </Tab.Navigator>
+        </WatchListProvider>
     )
 }

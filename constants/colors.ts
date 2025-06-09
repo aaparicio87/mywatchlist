@@ -2,6 +2,7 @@ export const Colors = {
   light: {
     primary: '#2196F3',
     secondary: '#009688',
+    primaryContainer: '#c8f0ff',
     accent: '#FF9800',
     background: '#FFFFFF',
     surface: '#F5F5F5',
@@ -13,6 +14,9 @@ export const Colors = {
     error: '#F44336',
     white: '#FFFFFF',
     black: '#000000',
+    positive: '#00d4aa',
+    negative: '#ff4757',
+    star: '#ffd700'
   },
   dark: {
     primary: '#2196F3',
@@ -28,6 +32,10 @@ export const Colors = {
     error: '#F44336',
     white: '#F4F3F4',
     black: '#000000',
+    primaryContainer: '#91e1ff',
+    positive: '#00d4aa',
+    negative: '#ff4757',
+    star: '#ffd700'
   },
 }
 
