@@ -1,10 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { RootStackParamList } from '../types.navigation';
 import { useAuth } from '@/hooks/useAuth';
-import LoginScreen from '@/screens/LoginScreen/LoginScreen';
-import HomeScreen from '@/screens/HomeScreen/HomeScreen';
 import { useGlobalStyles } from '@/hooks/useGlobalStyled';
+import { LoginScreen } from '@/screens';
+
+import { RootStackParamList } from '../types.navigation';
+import { TabNavigation } from '../TabNavigation/TabNavigation';
 
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -28,11 +29,11 @@ export const MainNavigation = () => {
                         />
                     ) : (
                         <RootStack.Screen
-                            name='Home'
+                            name='BottomTab'
                             options={{
                                 headerShown: false
                             }}
-                            component={HomeScreen}
+                            component={TabNavigation}
                         />
                     )
             }

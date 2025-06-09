@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 
 import { useGlobalStyles } from '@/hooks/useGlobalStyled'
 
-const HomeScreen = () => {
+export const HomeScreen = () => {
     const { styledGlobal } = useGlobalStyles()
     return (
         <View style={[styledGlobal.centerContainer]}>
@@ -11,5 +11,3 @@ const HomeScreen = () => {
         </View>
     )
 }
-
-export default HomeScreen

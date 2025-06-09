@@ -4,7 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod/v4";
 
 import { useAuthContextContext } from "@/contexts/AuthContext/AuthContext";
-import { useGlobalThemeContextContext } from "@/contexts/ThemeContext/ThemeContext";
+import { LoginScreenProps } from "@/navigation/types.navigation";
+import { useNavigation } from "@react-navigation/native";
+import { Alert } from "react-native";
 
 
 interface ILogin {
@@ -13,8 +15,8 @@ interface ILogin {
 }
 
 const INITIAL_STATE: ILogin = {
-  email: '',
-  password: ''
+  email: 'user@test.com',
+  password: 'Password'
 }
 
 const LOGIN_VALIDATION_SCHEMA = z.object({
@@ -25,6 +27,7 @@ const LOGIN_VALIDATION_SCHEMA = z.object({
 })
 
 export const useLogin = () => {
+  const { navigation } = useNavigation<LoginScreenProps>()
   const { handleLogin } = useAuthContextContext() 
   const [displayPassword, setDisplayPassword] = React.useState(true)
 
@@ -33,7 +36,7 @@ export const useLogin = () => {
     handleSubmit,
     getValues,
     reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful }
+    formState: { errors, isSubmitting, isSubmitSuccessful, isLoading }
   } = useForm<ILogin>({
     defaultValues: { ...INITIAL_STATE },
     resolver: zodResolver(LOGIN_VALIDATION_SCHEMA)
@@ -41,17 +44,20 @@ export const useLogin = () => {
 
   React.useEffect(() => {
     if (!isSubmitSuccessful) { return }
-    reset()
+    reset(INITIAL_STATE)
   }, [isSubmitSuccessful])
 
   const handleDisplayPassword = () => setDisplayPassword((prevState) => !prevState)
 
-  const onLoginSubmit = handleSubmit(() => {
+  const onLoginSubmit = handleSubmit(async() => {
     const data = getValues()
     try {
-        if(data.email === 'user_test@test.com' && data.password === 'Test123') {
-            handleLogin()
-        }
+        const isLoggedIn = await handleLogin(data)
+        if(isLoggedIn) {
+            navigation.navigate('BottomTab')
+        }else {
+         Alert.alert('Error', 'Invalid credentials. Please try again.');
+      }
     
     } catch (error) {
         console.log(error)
@@ -64,7 +70,8 @@ export const useLogin = () => {
     errors,
     isSubmitting,
     handleDisplayPassword,
-    displayPassword
+    displayPassword,
+    isLoading
   }
 
 }

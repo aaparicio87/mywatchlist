@@ -1,4 +1,3 @@
-import React from 'react'
 import {
     Keyboard,
     Platform,
@@ -8,8 +7,6 @@ import {
 import { Button } from '@rneui/themed'
 import { KeyboardAvoidingView } from "react-native-keyboard-controller"
 
-
-
 import { useGlobalStyles } from '@hooks/useGlobalStyled'
 import { Logo } from '@svg/Logo'
 import { InputTextControlled, ThemeText } from '@/components'
@@ -18,7 +15,7 @@ import { useLogin } from './hooks/useLogin'
 import { loginStyles } from './styled'
 
 
-const LoginScreen = () => {
+export const LoginScreen = () => {
     const { colors } = useGlobalStyles()
     const styles = loginStyles(colors)
 
@@ -28,7 +25,7 @@ const LoginScreen = () => {
         handleDisplayPassword,
         onLoginSubmit,
         errors,
-        isSubmitting,
+        isLoading,
     } = useLogin()
 
     const hideKeyBoard = () => {
@@ -58,9 +55,10 @@ const LoginScreen = () => {
                         renderErrorMessage={!!errors.email}
                         control={control}
                         name='email'
-                        disabled={isSubmitting}
+                        disabled={isLoading}
                         autoCapitalize='none'
                         testID='emailLogin'
+                        autoCorrect={false}
                     />
 
                     <InputTextControlled
@@ -74,15 +72,16 @@ const LoginScreen = () => {
                         name='password'
                         errorMessage={errors.password?.message}
                         renderErrorMessage={!!errors.password}
-                        disabled={isSubmitting}
+                        disabled={isLoading}
                         autoCapitalize='none'
                         testID='passwordLogin'
+                        autoCorrect={false}
                     />
 
                     <Button
                         title="Log in"
-                        loading={isSubmitting}
-                        loadingProps={{ size: 'small', color: 'white' }}
+                        loading={isLoading}
+                        loadingProps={{ size: 'small', color: colors.white }}
                         buttonStyle={styles.button}
                         titleStyle={styles.buttonText}
                         containerStyle={styles.buttonContainer}
@@ -93,5 +92,3 @@ const LoginScreen = () => {
         </TouchableWithoutFeedback>
     )
 }
-
-export default LoginScreen
