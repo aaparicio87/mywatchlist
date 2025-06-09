@@ -26,7 +26,7 @@ export const Colors = {
     success: '#4CAF50',
     warning: '#FFC107',
     error: '#F44336',
-    white: '#FFFFFF',
+    white: '#F4F3F4',
     black: '#000000',
   },
 }

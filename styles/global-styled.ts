@@ -8,6 +8,11 @@ export const globalStyles = (colors: any) => StyleSheet.create({
         backgroundColor: colors.background
     },
 
+    content: {
+        flex: 1,
+        padding: 20,
+    },
+
     centerContainer: {
         flex: 1,
         justifyContent: 'center',

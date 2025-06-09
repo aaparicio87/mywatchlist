@@ -1,16 +1,19 @@
 import React from "react"
 import { mmkvDecryptedStorage } from "@constants/mmkv"
 
+interface User {
+  email: string;
+  password: string;
+  name: string;
+}
+
 export interface IAuth {
     isLoggedIn: boolean,
     handleLogin: ({ email, password }: ILogin) => Promise<boolean>
     handleLogout: () => void,
+    user: User | null
 }
 
-interface User {
-  email: string;
-  password: string;
-}
 
 interface ILogin {
     email: string,
@@ -21,6 +24,7 @@ interface ILogin {
 const mockUser: User = {
   email:'user@test.com',
   password: 'Password',
+  name: 'User',
 };
 
 export const useAuth = () => {
@@ -56,6 +60,7 @@ export const useAuth = () => {
     return {
         isLoggedIn,
         handleLogin,
-        handleLogout
+        handleLogout,
+        user: isLoggedIn ? mockUser : null
     }
 }

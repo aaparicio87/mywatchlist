@@ -16,7 +16,7 @@ import { loginStyles } from './styled'
 
 
 export const LoginScreen = () => {
-    const { colors } = useGlobalStyles()
+    const { colors, styledGlobal } = useGlobalStyles()
     const styles = loginStyles(colors)
 
     const {
@@ -36,7 +36,7 @@ export const LoginScreen = () => {
         <TouchableWithoutFeedback onPress={hideKeyBoard}>
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={styles.container}
+                style={styledGlobal.content}
             >
                 <View style={styles.title}>
                     <Logo />
