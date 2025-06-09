@@ -9,6 +9,7 @@ import { darkTheme, lightTheme } from "@constants/themes";
 interface ThemeContextType {
     colors: ThemeColors;
     toggleTheme: () => void;
+    colorScheme: ColorScheme
 }
 
 
@@ -43,6 +44,7 @@ const GlobalThemeProvider = ({ children }: Props) => {
             value={{
                 colors,
                 toggleTheme,
+                colorScheme
             }}
         >
             <ThemeProvider theme={theme}>

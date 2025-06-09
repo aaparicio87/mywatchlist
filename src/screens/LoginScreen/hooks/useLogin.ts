@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod/v4";
 
 import { useAuthContextContext } from "@/contexts/AuthContext/AuthContext";
+import { useGlobalThemeContextContext } from "@/contexts/ThemeContext/ThemeContext";
 
 
 interface ILogin {
@@ -24,7 +25,6 @@ const LOGIN_VALIDATION_SCHEMA = z.object({
 })
 
 export const useLogin = () => {
-
   const { handleLogin } = useAuthContextContext() 
   const [displayPassword, setDisplayPassword] = React.useState(true)
 
