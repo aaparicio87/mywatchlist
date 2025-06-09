@@ -32,7 +32,6 @@ export const useLogin = () => {
     control,
     handleSubmit,
     getValues,
-    setValue,
     reset,
     formState: { errors, isSubmitting, isSubmitSuccessful }
   } = useForm<ILogin>({

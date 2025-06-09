@@ -2,13 +2,13 @@ import { StyleSheet } from "react-native";
 
 export const loginStyles=(colors: any)=>StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
+        flex:1,
         padding: 20,
     },
     content: {
+        flex:3,
         alignItems: 'center',
-        gap: 25
+        gap: 20,
     },
     button:{
         backgroundColor: colors.primary,
@@ -25,8 +25,14 @@ export const loginStyles=(colors: any)=>StyleSheet.create({
         width: 200,
         marginVertical: 10,
     },
-    error:{
+    error: {
         color: colors.error,
+    },
+    title: { 
+        flex: 2, 
+        alignItems: 'center', 
+        justifyContent: 'center' ,
+        gap: 10
     }
     
 })

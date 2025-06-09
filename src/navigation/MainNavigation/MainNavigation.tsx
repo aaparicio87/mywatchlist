@@ -12,10 +12,10 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 export const MainNavigation = () => {
 
     const auth = useAuth()
-    const globalStyles = useGlobalStyles()
+    const { styledGlobal } = useGlobalStyles()
 
     return (
-        <RootStack.Navigator screenOptions={{ contentStyle: globalStyles.background }}>
+        <RootStack.Navigator screenOptions={{ contentStyle: styledGlobal.background }}>
             {
                 !auth.isLoggedIn ?
                     (

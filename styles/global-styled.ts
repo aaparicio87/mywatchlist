@@ -13,5 +13,19 @@ export const globalStyles = (colors: any) => StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+
+    mainResult: {
+        color: colors.textPrimary,
+        fontSize: 70,
+        textAlign: 'right',
+        fontWeight: '400',
+    },
+
+    subresult: {
+        color: colors.textPrimary,
+        fontSize: 40,
+        textAlign: 'right',
+        fontWeight: '400',
+    },
    
 })

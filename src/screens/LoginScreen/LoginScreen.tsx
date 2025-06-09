@@ -1,17 +1,22 @@
 import React from 'react'
 import { Keyboard, Platform, TouchableWithoutFeedback, View } from 'react-native'
-import { Button } from '@rneui/themed';
-import { KeyboardAvoidingView } from "react-native-keyboard-controller";
+import { Button } from '@rneui/themed'
+import { KeyboardAvoidingView } from "react-native-keyboard-controller"
 
 
-import { useLogin } from './hooks/useLogin';
+
+import { useGlobalStyles } from '@hooks/useGlobalStyled'
+import { Logo } from '@svg/Logo'
+
+import { useLogin } from './hooks/useLogin'
 import { loginStyles } from './styled'
-import { useGlobalThemeContextContext } from '@/contexts/ThemeContext/ThemeContext';
-import { InputTextControlled } from '@/components/InputTextControlled/InputTextControlled';
+import { InputTextControlled, ThemeText } from '@/components'
+
 
 const LoginScreen = () => {
-    const { colors } = useGlobalThemeContextContext();
+    const { colors } = useGlobalStyles()
     const styles = loginStyles(colors)
+
     const {
         control,
         displayPassword,
@@ -31,7 +36,13 @@ const LoginScreen = () => {
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                 style={styles.container}
             >
+                <View style={styles.title}>
+                    <Logo />
+                    <ThemeText variant='h2'>MyWatchlist</ThemeText>
+                </View>
+
                 <View style={[styles.content]}>
+
                     <InputTextControlled
                         placeholder='jdoe@mail.com'
                         errorStyle={styles.error}
@@ -43,6 +54,8 @@ const LoginScreen = () => {
                         control={control}
                         name='email'
                         disabled={isSubmitting}
+                        autoCapitalize='none'
+                        testID='emailLogin'
                     />
 
                     <InputTextControlled
@@ -57,6 +70,8 @@ const LoginScreen = () => {
                         errorMessage={errors.password?.message}
                         renderErrorMessage={!!errors.password}
                         disabled={isSubmitting}
+                        autoCapitalize='none'
+                        testID='passwordLogin'
                     />
 
                     <Button

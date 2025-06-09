@@ -13,6 +13,7 @@
       "@constants/*": ["constants/*"],
       "@styles/*": ["styles/*"],
       "contexts/*": ["contexts/*"],
+      "@svg/*": ["src/svg/*"]
     }
   }
 }

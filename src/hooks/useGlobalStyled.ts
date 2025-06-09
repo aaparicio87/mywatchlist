@@ -5,5 +5,8 @@ export const useGlobalStyles = () => {
     const { colors } = useGlobalThemeContextContext();
     const styledGlobal = globalStyles(colors);
 
-    return styledGlobal;
+    return {
+        styledGlobal,
+        colors
+    };
 }
