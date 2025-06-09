@@ -1,24 +1,20 @@
 import { StyleSheet } from "react-native";
 
-
 export const globalStyles = (colors: any) => StyleSheet.create({
     
     background: {
         flex: 1,
         backgroundColor: colors.background
     },
-
     content: {
         flex: 1,
         padding: 20,
     },
-
     centerContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-
     mainResult: {
         color: colors.textPrimary,
         fontSize: 70,
@@ -32,5 +28,4 @@ export const globalStyles = (colors: any) => StyleSheet.create({
         textAlign: 'right',
         fontWeight: '400',
     },
-   
 })
