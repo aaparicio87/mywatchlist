@@ -14,20 +14,25 @@ export const FavoritesScreen = () => {
             instruments,
             favorites
         },
+        toggleFavorite,
+        removeFromWatchlist
     } = useWatchListContextContext()
 
     React.useEffect(() => {
-        loadPersistedData();
-    }, []);
+        loadPersistedData()
+    }, [])
 
     const favoriteInstruments = instruments.filter(instrument =>
         favorites.includes(instrument.id)
-    );
+    )
 
     const renderInstrument = ({ item }: { item: Instrument }) => (
-        <InstrumentItem instrument={item} />
-    );
-
+        <InstrumentItem
+            instrument={item}
+            toggleFavorite={toggleFavorite}
+            removeFromWatchlist={removeFromWatchlist}
+        />
+    )
 
     return (
         <TabLayout

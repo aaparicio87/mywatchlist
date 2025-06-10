@@ -1,6 +1,5 @@
 import React from 'react'
 import { FlatList, View, RefreshControl } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useGlobalStyles } from '@hooks/useGlobalStyled'
 import { useWatchListContextContext } from '@contexts/WatchListContext/WatchListContext'
@@ -90,7 +89,7 @@ export const HomeScreen = () => {
             toggleFavorite={toggleFavorite}
             removeFromWatchlist={removeFromWatchlist}
         />
-    ), []);
+    ), [toggleFavorite, removeFromWatchlist]);
 
     return (
 

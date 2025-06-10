@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+
 import { Instrument } from '@reducers/watchList';
 import { useGlobalStyles } from '@/hooks/useGlobalStyled';
 import { createStyles } from './styled';
@@ -8,16 +9,16 @@ interface InstrumentItemProps {
     instrument: Instrument;
     showFavoriteButton?: boolean;
     showRemoveButton?: boolean;
-    toggleFavorite?: (instrumentId: string) => void;
-    removeFromWatchlist?: (instrumentId: string) => void;
+    toggleFavorite: (instrumentId: string) => void;
+    removeFromWatchlist: (instrumentId: string) => void;
 }
 
 export function InstrumentItem({
     instrument,
     showFavoriteButton = true,
     showRemoveButton = false,
-    toggleFavorite = () => { },
-    removeFromWatchlist = () => { }
+    toggleFavorite,
+    removeFromWatchlist
 }: InstrumentItemProps) {
 
     const { colors } = useGlobalStyles();
