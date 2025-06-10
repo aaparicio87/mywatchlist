@@ -54,7 +54,7 @@ export const HeaderDetail = ({
                     style={styles.closeButton}
                     onPress={handleClose}
                 >
-                    <Ionicons name="close" size={24} color="black" />
+                    <Ionicons name="close" size={24} color={colors.text} />
                 </TouchableOpacity>
             </View>
         </View>

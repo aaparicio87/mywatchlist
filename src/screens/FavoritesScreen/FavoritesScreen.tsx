@@ -4,7 +4,7 @@ import { FlatList } from 'react-native'
 import { useGlobalStyles } from '@/hooks/useGlobalStyled'
 import { useWatchListContextContext } from '@/contexts/WatchListContext/WatchListContext'
 import { Instrument } from '@reducers/watchList'
-import { EmptyList, InstrumentItem, TabLayout } from '@/components'
+import { EmptyList, InstrumentDetail, InstrumentItem, TabLayout } from '@/components'
 
 export const FavoritesScreen = () => {
     const { colors } = useGlobalStyles()
@@ -12,10 +12,14 @@ export const FavoritesScreen = () => {
         loadPersistedData,
         watchList: {
             instruments,
-            favorites
+            favorites,
+            visbleDetail,
+            instrumentDetail
         },
         toggleFavorite,
-        removeFromWatchlist
+        removeFromWatchlist,
+        handleCloseDetail,
+        openDetail
     } = useWatchListContextContext()
 
     React.useEffect(() => {
@@ -31,6 +35,7 @@ export const FavoritesScreen = () => {
             instrument={item}
             toggleFavorite={toggleFavorite}
             removeFromWatchlist={removeFromWatchlist}
+            openDetail={openDetail}
         />
     )
 
@@ -49,6 +54,13 @@ export const FavoritesScreen = () => {
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={<EmptyList type="favorites" />}
             />
+            {visbleDetail && <InstrumentDetail
+                instrument={instrumentDetail}
+                isVisible={visbleDetail}
+                onClose={handleCloseDetail}
+                toggleFavorite={toggleFavorite}
+                removeFromWatchlist={removeFromWatchlist}
+            />}
         </TabLayout>
     )
 }

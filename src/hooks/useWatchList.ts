@@ -3,6 +3,7 @@ import { mmkvDecryptedStorage, mmkvEncryptedStorage } from "@constants/mmkv";
 
 import { 
     INITIAL_STATE_WATCHLIST, 
+    Instrument, 
     IWatchList, 
     TSortBy, 
     WatchlistActionTypes, 
@@ -21,6 +22,8 @@ export interface IUseWatchList {
     loadPersistedData: () => void;
     persistData: () => void;
     watchList: IWatchList
+    openDetail: (instrument: Instrument) => void
+    handleCloseDetail: () => void
 }
 
 export const useWatchList = ():IUseWatchList => {
@@ -58,6 +61,14 @@ export const useWatchList = ():IUseWatchList => {
         mmkvEncryptedStorage.set('@watchlist', JSON.stringify(watchList));
     };
 
+    const openDetail = (instrument: Instrument) => {
+        dispatch({type: WatchlistActionTypes.OPEN_DETAIL, payload: {instrument}});
+    };
+
+    const handleCloseDetail = () => {
+        dispatch({type: WatchlistActionTypes.CLOSE_DETAIL});
+    }
+
     return {
         toggleFavorite,
         addToWatchlist,
@@ -68,6 +79,8 @@ export const useWatchList = ():IUseWatchList => {
         toggleSortOrder,
         loadPersistedData,
         persistData,
-        watchList
+        watchList,
+        handleCloseDetail,
+        openDetail
     }
 }

@@ -11,6 +11,7 @@ interface InstrumentItemProps {
     showRemoveButton?: boolean;
     toggleFavorite: (instrumentId: string) => void;
     removeFromWatchlist: (instrumentId: string) => void;
+    openDetail: (instrument: Instrument) => void
 }
 
 export function InstrumentItem({
@@ -18,13 +19,15 @@ export function InstrumentItem({
     showFavoriteButton = true,
     showRemoveButton = false,
     toggleFavorite,
-    removeFromWatchlist
+    removeFromWatchlist,
+    openDetail
 }: InstrumentItemProps) {
 
     const { colors } = useGlobalStyles();
     const styles = createStyles(colors);
 
     const handlePress = () => {
+        openDetail(instrument);
     };
 
     const handleFavoritePress = (e: any) => {

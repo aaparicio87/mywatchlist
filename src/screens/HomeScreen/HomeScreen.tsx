@@ -1,12 +1,13 @@
 import React from 'react'
 import { FlatList, View, RefreshControl } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useGlobalStyles } from '@hooks/useGlobalStyled'
 import { useWatchListContextContext } from '@contexts/WatchListContext/WatchListContext'
 import { Instrument, TSortBy } from '@reducers/watchList'
 
 import { SortButton } from './components'
-import { EmptyList, InstrumentItem, TabLayout } from '@/components';
+import { EmptyList, InstrumentDetail, InstrumentItem, TabLayout } from '@/components';
 import styles from './styled'
 
 interface ISortLabel {
@@ -26,6 +27,7 @@ const SORT_LABELS: ISortLabel[] = [{
 }]
 
 export const HomeScreen = () => {
+    const insets = useSafeAreaInsets();
     const { colors } = useGlobalStyles()
     const {
         loadPersistedData,
@@ -34,12 +36,16 @@ export const HomeScreen = () => {
             instruments,
             watchlist,
             sortBy,
-            sortOrder
+            sortOrder,
+            visbleDetail,
+            instrumentDetail
         },
         toggleSortOrder,
         setSortBy,
         toggleFavorite,
-        removeFromWatchlist
+        removeFromWatchlist,
+        handleCloseDetail,
+        openDetail
     } = useWatchListContextContext()
 
     const [refreshing, setRefreshing] = React.useState(false);
@@ -88,11 +94,11 @@ export const HomeScreen = () => {
             instrument={item}
             toggleFavorite={toggleFavorite}
             removeFromWatchlist={removeFromWatchlist}
+            openDetail={openDetail}
         />
     ), [toggleFavorite, removeFromWatchlist]);
 
     return (
-
         <TabLayout
             totalText={`${watchlistInstruments.length} instruments`}
             title="My Watchlist"
@@ -128,8 +134,17 @@ export const HomeScreen = () => {
                         tintColor={colors.primary}
                     />
                 }
+                contentContainerStyle={{ paddingBottom: insets.bottom + 70 }}
+                ItemSeparatorComponent={() => <View style={{ height: 1 }} />}
                 ListEmptyComponent={<EmptyList type="watchlist" />}
             />
+            {visbleDetail && <InstrumentDetail
+                instrument={instrumentDetail}
+                isVisible={visbleDetail}
+                onClose={handleCloseDetail}
+                toggleFavorite={toggleFavorite}
+                removeFromWatchlist={removeFromWatchlist}
+            />}
         </TabLayout>
     )
 }

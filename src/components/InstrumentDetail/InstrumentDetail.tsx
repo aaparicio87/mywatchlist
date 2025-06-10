@@ -1,11 +1,23 @@
 import React from 'react';
 import { View, Dimensions } from 'react-native'
-import BottomSheet, { BottomSheetView, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import {
+    BottomSheetView,
+    BottomSheetScrollView,
+    BottomSheetModal,
+    useBottomSheetSpringConfigs
+} from '@gorhom/bottom-sheet';
 
 import { Instrument } from '@/reducers/watchList';
 import { useGlobalStyles } from '@/hooks/useGlobalStyled';
 
-import { HeaderDetail, PriceSection, SymbolSection } from './components';
+import {
+    ActionDetail,
+    ChartDetail,
+    HeaderDetail,
+    PriceSection,
+    SymbolSection,
+    StatsSection
+} from './components';
 import { createStyles } from './styled';
 
 
@@ -26,29 +38,22 @@ export const InstrumentDetail = ({
     toggleFavorite,
     removeFromWatchlist
 }: InstrumentDetailsBottomSheetProps) => {
+
     const { colors } = useGlobalStyles();
     const styles = createStyles(colors);
+    const bottomSheetRef = React.useRef<BottomSheetModal>(null)
+    const snapPoints = React.useMemo(() => ['95%'], []);
 
     const [loading, setLoading] = React.useState(false);
-    const bottomSheetRef = React.useRef<BottomSheet>(null);
 
-    // Bottom sheet snap points
-    const snapPoints = React.useMemo(() => ['25%', '50%', '90%'], []);
-
-    // Handle sheet changes
-    const handleSheetChanges = React.useCallback((index: number) => {
-        if (index === -1) {
-            onClose();
-        }
-    }, [onClose]);
 
     React.useEffect(() => {
-        if (isVisible && instrument) {
-            bottomSheetRef.current?.expand();
+        if (isVisible) {
+            bottomSheetRef.current?.present();
         } else {
-            bottomSheetRef.current?.close();
+            bottomSheetRef.current?.dismiss();
         }
-    }, [isVisible, instrument]);
+    }, [isVisible]);
 
     const handleFavoritePress = async () => {
         if (!instrument) return;
@@ -63,47 +68,65 @@ export const InstrumentDetail = ({
         onClose();
     };
 
-    const handleClose = () => {
-        bottomSheetRef.current?.close();
-    };
+    const handleDismiss = React.useCallback(() => {
+        bottomSheetRef.current?.dismiss();
+        onClose();
+    }, []);
+
+    const animationConfigs = useBottomSheetSpringConfigs({
+        damping: 80,
+        overshootClamping: true,
+        restDisplacementThreshold: 0.1,
+        restSpeedThreshold: 0.1,
+        stiffness: 500,
+    })
 
     if (!instrument) return null;
 
     const isPositive = instrument.change >= 0;
     const changeColor = isPositive ? colors.positive : colors.negative;
+    const iconHeader = instrument.isFavorite ? colors.star : colors.textSecondary
+
 
     return (
-        <BottomSheet
+        <BottomSheetModal
             ref={bottomSheetRef}
-            index={-1}
             snapPoints={snapPoints}
-            onChange={handleSheetChanges}
-            enablePanDownToClose={true}
+            animationConfigs={animationConfigs}
+            animateOnMount={true}
+            enableDynamicSizing={false}
+            enablePanDownToClose={false}
             backgroundStyle={styles.bottomSheetBackground}
             handleIndicatorStyle={styles.handleIndicator}
+            onDismiss={handleDismiss}
         >
-            <BottomSheetView style={styles.contentContainer}>
+            <BottomSheetScrollView
+                style={styles.scrollView}
+                showsVerticalScrollIndicator={false}
+            >
                 <HeaderDetail
                     handleFavoritePress={handleFavoritePress}
                     loading={loading}
-                    handleClose={handleClose}
+                    handleClose={handleDismiss}
                     iconName={instrument.isFavorite ? "star" : "star-outline"}
-                    iconColor={instrument.isFavorite ? colors.star : colors.textSecondary}
+                    iconColor={iconHeader}
                 />
-                <BottomSheetScrollView
-                    style={styles.scrollView}
-                    showsVerticalScrollIndicator={false}
-                >
-                    <View style={styles.instrumentHeader}>
-                        <SymbolSection instrument={instrument} />
-                        <PriceSection
-                            instrument={instrument}
-                            isPositive={isPositive}
-                            changeColor={changeColor}
-                        />
-                    </View>
-                </BottomSheetScrollView>
-            </BottomSheetView>
-        </BottomSheet>
+                <View style={styles.instrumentHeader}>
+                    <SymbolSection instrument={instrument} />
+                    <PriceSection
+                        instrument={instrument}
+                        isPositive={isPositive}
+                        changeColor={changeColor}
+                    />
+                </View>
+                <ChartDetail instrument={instrument} />
+                <StatsSection instrument={instrument} />
+                <ActionDetail
+                    handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                    handleCancel={handleDismiss}
+                    isFavorite={instrument.isFavorite}
+                />
+            </BottomSheetScrollView>
+        </BottomSheetModal>
     )
 }

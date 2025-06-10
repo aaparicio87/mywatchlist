@@ -1,5 +1,6 @@
 import {
   ILoadPersistedDataParams,
+  IOpenDetailActionsParams,
   IWatchListActionsParams,
   IWatchListSearchParams,
   IWatchListSortParams
@@ -15,6 +16,8 @@ export enum WatchlistActionTypes {
   TOGGLE_SORT_ORDER = 'TOGGLE_SORT_ORDER',
   LOAD_PERSISTED_DATA = 'LOAD_PERSISTED_DATA',
   PERSIST_DATA = 'PERSIST_DATA',
+  CLOSE_DETAIL = 'CLOSE_DETAIL',
+  OPEN_DETAIL = 'OPEN_DETAIL',
 }
 
 interface IToggleFavoriteAction {
@@ -55,6 +58,15 @@ interface ILoadPersistedDataAction {
   payload: ILoadPersistedDataParams
 }
 
+interface IOpenDetailAction {
+  type: WatchlistActionTypes.OPEN_DETAIL,
+  payload: IOpenDetailActionsParams
+}
+
+interface ICloseDetailAction {
+  type: WatchlistActionTypes.CLOSE_DETAIL,
+}
+
 
 export type TWatchlistActions = IToggleFavoriteAction
   | IAddToWatchlistAction
@@ -64,3 +76,5 @@ export type TWatchlistActions = IToggleFavoriteAction
   | ISetSortByAction
   | IToggleSortOrderAction
   | ILoadPersistedDataAction
+  | IOpenDetailAction
+  | ICloseDetailAction

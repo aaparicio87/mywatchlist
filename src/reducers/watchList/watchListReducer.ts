@@ -30,10 +30,16 @@ export interface IWatchList {
   error: string | null;
   sortBy: TSortBy;
   sortOrder: TSortOrder;
+  visbleDetail: boolean
+  instrumentDetail: Instrument | null
 }
 
 export interface IWatchListActionsParams {
     instrumentId: string
+}
+
+export interface IOpenDetailActionsParams {
+    instrument: Instrument
 }
 
 export interface IWatchListSearchParams {
@@ -235,6 +241,8 @@ export const INITIAL_STATE_WATCHLIST: IWatchList = {
   error: null,
   sortBy: 'name',
   sortOrder: 'asc',
+  visbleDetail: false,
+  instrumentDetail: null
 };
 
 export const watchListReducer = (state: IWatchList, action: TWatchlistActions) => {
@@ -371,6 +379,21 @@ export const watchListReducer = (state: IWatchList, action: TWatchlistActions) =
                 favorites,
                 watchlist,
                 instruments: updatedInstruments ,
+            };
+        }
+        case WatchlistActionTypes.OPEN_DETAIL:{
+            const { instrument } = action.payload;
+            return {
+                ...state,
+                visbleDetail: true,
+                instrumentDetail: instrument
+            };
+        }
+        case WatchlistActionTypes.CLOSE_DETAIL:{
+            return {
+                ...state,
+                visbleDetail: false,
+                instrumentDetail: null
             };
         }
         default:

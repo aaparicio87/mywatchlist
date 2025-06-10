@@ -7,12 +7,12 @@ export const createStyles = (colors: any) => StyleSheet.create({
   symbol: {
     fontSize: 24,
     fontWeight: '800',
-    color: '#fff',
+    color: colors.text,
     marginBottom: 4,
   },
   name: {
     fontSize: 16,
-    color: '#999',
+    color: colors.textSecondary,
     marginBottom: 8,
   },
   categoryBadge: {

@@ -7,7 +7,7 @@ export const createStyles = (colors: any) => StyleSheet.create({
   price: {
     fontSize: 32,
     fontWeight: '800',
-    color: colors.white,
+    color: colors.text,
     marginBottom: 8,
   },
    changeText: {

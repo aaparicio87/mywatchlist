@@ -19,10 +19,10 @@ export const PriceSection = ({ instrument, changeColor, isPositive }: IProps) =>
     return (
         <View style={styles.priceSection}>
             <Text style={styles.price}>
-                ${instrument.price.toLocaleString(undefined, {
+                {` ${instrument.price.toLocaleString(undefined, {
                     minimumFractionDigits: instrument.category === 'forex' ? 4 : 2,
                     maximumFractionDigits: instrument.category === 'forex' ? 4 : 2,
-                })}
+                })}`}
             </Text>
             <View style={[styles.changeContainer, { backgroundColor: changeColor + '20' }]}>
                 {isPositive ? (

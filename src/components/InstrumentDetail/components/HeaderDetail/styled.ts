@@ -7,7 +7,7 @@ export const createStyles = (colors: any) => StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 16,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
   },
   headerLeft: {
     flex: 1,
@@ -15,7 +15,7 @@ export const createStyles = (colors: any) => StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.white,
+    color: colors.text,
   },
   headerRight: {
     flexDirection: 'row',
