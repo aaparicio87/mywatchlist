@@ -1,10 +1,48 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { FlatList } from 'react-native'
+
+import { useGlobalStyles } from '@/hooks/useGlobalStyled'
+import { useWatchListContextContext } from '@/contexts/WatchListContext/WatchListContext'
+import { Instrument } from '@reducers/watchList'
+import { EmptyList, InstrumentItem, TabLayout } from '@/components'
 
 export const FavoritesScreen = () => {
+    const { colors } = useGlobalStyles()
+    const {
+        loadPersistedData,
+        watchList: {
+            instruments,
+            favorites
+        },
+    } = useWatchListContextContext()
+
+    React.useEffect(() => {
+        loadPersistedData();
+    }, []);
+
+    const favoriteInstruments = instruments.filter(instrument =>
+        favorites.includes(instrument.id)
+    );
+
+    const renderInstrument = ({ item }: { item: Instrument }) => (
+        <InstrumentItem instrument={item} />
+    );
+
+
     return (
-        <View>
-            <Text>FavoritesScreen</Text>
-        </View>
+        <TabLayout
+            iconColor={colors.star}
+            iconName='star'
+            title='Favorites'
+            totalText='0 instruments'
+        >
+            <FlatList
+                data={favoriteInstruments}
+                renderItem={renderInstrument}
+                keyExtractor={(item) => item.id}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={<EmptyList type="favorites" />}
+            />
+        </TabLayout>
     )
 }

@@ -8,16 +8,16 @@ interface InstrumentItemProps {
     instrument: Instrument;
     showFavoriteButton?: boolean;
     showRemoveButton?: boolean;
-    toggleFavorite: (instrumentId: string) => void;
-    removeFromWatchlist: (instrumentId: string) => void;
+    toggleFavorite?: (instrumentId: string) => void;
+    removeFromWatchlist?: (instrumentId: string) => void;
 }
 
 export function InstrumentItem({
     instrument,
     showFavoriteButton = true,
     showRemoveButton = false,
-    toggleFavorite,
-    removeFromWatchlist
+    toggleFavorite = () => { },
+    removeFromWatchlist = () => { }
 }: InstrumentItemProps) {
 
     const { colors } = useGlobalStyles();

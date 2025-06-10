@@ -1,15 +1,14 @@
 import React from 'react'
 import { FlatList, View, RefreshControl } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useGlobalStyles } from '@hooks/useGlobalStyled'
 import { useWatchListContextContext } from '@contexts/WatchListContext/WatchListContext'
 import { Instrument, TSortBy } from '@reducers/watchList'
 
-import { HeaderHome, SortButton } from './components'
+import { SortButton } from './components'
+import { EmptyList, InstrumentItem, TabLayout } from '@/components';
 import styles from './styled'
-import { InstrumentItem } from '@/components';
 
 interface ISortLabel {
     label: string,
@@ -94,11 +93,13 @@ export const HomeScreen = () => {
     ), []);
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background }}>
-            <HeaderHome
-                totalWatchlistInstruments={watchlistInstruments.length}
-            />
 
+        <TabLayout
+            totalText={`${watchlistInstruments.length} instruments`}
+            title="My Watchlist"
+            iconColor={colors.primary}
+            iconName="chart-bar"
+        >
             {watchlistInstruments.length > 0 && (
                 <View style={styles.sortContainer}>
                     {SORT_LABELS.map(({ label, value }) => (
@@ -128,8 +129,8 @@ export const HomeScreen = () => {
                         tintColor={colors.primary}
                     />
                 }
-                ListEmptyComponent={() => <Ionicons name="trending-up" size={24} color="black" />}
+                ListEmptyComponent={<EmptyList type="watchlist" />}
             />
-        </SafeAreaView>
+        </TabLayout>
     )
 }
