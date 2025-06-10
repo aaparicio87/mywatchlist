@@ -15,14 +15,13 @@ export const createStyles = (colors: any) => StyleSheet.create({
     flexWrap: 'wrap',
   },
   suggestionTag: {
-    backgroundColor: '#2a2a2a',
+    backgroundColor: colors.primary,
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 16,
     marginRight: 8,
     marginBottom: 8,
     borderWidth: 1,
-    borderColor: '#333',
   },
   suggestionTagText: {
     fontSize: 14,

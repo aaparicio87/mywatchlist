@@ -41,10 +41,15 @@ export const SearchScreen = () => {
         />
     )
 
+    const messageEmtyList = `No results found ${searchQuery.length ? `for ${searchQuery}` : ''}`
+
     return (
         <TabLayout
             totalText={`Find stocks, crypto, and forex to add to your watchlist`}
             title="Search Instruments"
+            customStyles={{ flex: 1 }}
+            iconColor={colors.primary}
+            iconName="searchengin"
         >
             <SearchInput
                 searchQuery={searchQuery}
@@ -57,7 +62,7 @@ export const SearchScreen = () => {
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.resultsList}
-                ListEmptyComponent={<EmptyList type="search" message={`No results found for "${searchQuery}"`} />}
+                ListEmptyComponent={<EmptyList type="search" message={messageEmtyList} />}
             />
         </TabLayout>
     )

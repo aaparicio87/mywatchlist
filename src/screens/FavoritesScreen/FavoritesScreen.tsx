@@ -34,7 +34,8 @@ export const FavoritesScreen = () => {
             iconColor={colors.star}
             iconName='star'
             title='Favorites'
-            totalText='0 instruments'
+            totalText={`${favoriteInstruments.length} favorites`}
+            customStyles={{ flex: 1 }}
         >
             <FlatList
                 data={favoriteInstruments}
