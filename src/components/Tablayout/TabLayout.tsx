@@ -9,18 +9,18 @@ import { createStyles } from './styled'
 type TProps = PropsWithChildren & {
     totalText: string
     title: string
-    iconName: string
-    iconColor: string
     iconSize?: number
+    iconName?: string | null
+    iconColor?: string | null
 }
 
 export const TabLayout = ({
     totalText,
     title,
     children,
-    iconName,
-    iconColor,
-    iconSize = 24
+    iconName = null,
+    iconSize = 24,
+    iconColor = null
 }: TProps) => {
 
     const { colors } = useGlobalStyles()
@@ -30,7 +30,7 @@ export const TabLayout = ({
         <SafeAreaView style={{ backgroundColor: colors.background }}>
             <View style={styles.header}>
                 <View style={styles.titleContainer}>
-                    <FontAwesome6 name={iconName} size={iconSize} color={iconColor} />
+                    {(iconName && iconColor) && <FontAwesome6 name={iconName} size={iconSize} color={iconColor} />}
                     <Text style={styles.title}>{title}</Text>
                 </View>
                 <Text style={styles.subtitle}>
