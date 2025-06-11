@@ -42,34 +42,38 @@ bun ios
 
 If you have any issues with the project, please check the following steps:
 
-. Make sure you have the latest version of Node.js installed.
-. Clear the cache and reinstall the dependencies by running the following commands:
+1. Make sure you have the latest version of Node.js installed.
+2. Clear the cache and reinstall the dependencies by running the following commands:
 
 ```
 rm -rf node_modules
 bun install
 ```
 
-. Check that your development environment is properly configured for React Native.
+3. Check that your development environment is properly configured for React Native.
 
 ## Design Decisions & Known Limitations
 
 ### Design Decisions:
 
-. Built with Expo for rapid development and cross-platform compatibility
-. Uses prebuild approach for access to native modules while maintaining Expo workflow
-. Uses bun for fast and reliable package management
-. Uses React Native Elements for UI components
+1. Built with Expo for rapid development and cross-platform compatibility
+2. Uses prebuild approach for access to native modules while maintaining Expo workflow
+3. Uses bun for fast and reliable package management
+4. Uses React Native Elements for UI components
 
 ### Known Limitations:
 
-. Requires prebuild step before first run (adds setup complexity)
-. Native module additions require prebuild regeneration
+1. Requires prebuild step before first run (adds setup complexity)
+
+2. Native module additions require prebuild regeneration
 
 ### Future Improvements
 
-Given more time, I would enhance this project by implementing automated testing
-with @testing-library/react-native and Maestro for E2E testing and implementing
-proper error boundaries with crash reporting with Sentry.
-Additionally, I would add a comprehensive documentation with component storybooks
-for better developer experience.
+Given more time, I would enhance this project by:
+
+1. Implementing automated testing with @testing-library/react-native
+   and Maestro for E2E testing and implementing.
+
+2. Proper error boundaries with crash reporting with Sentry.
+
+3. Implementing routing with expo-router, recomended by Expo.
