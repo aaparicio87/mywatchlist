@@ -38,6 +38,11 @@ IOs
 bun ios
 ```
 
+### To log in use the mock email and password
+
+Email: user@test.com
+Password: Password
+
 ## Troubleshooting
 
 If you have any issues with the project, please check the following steps:
@@ -60,6 +65,8 @@ bun install
 2. Uses prebuild approach for access to native modules while maintaining Expo workflow
 3. Uses bun for fast and reliable package management
 4. Uses React Native Elements for UI components
+5. Uses react-native-mmkv for local storage for better performance and security.
+6. Uses react-hook-form for form validation in login.
 
 ### Known Limitations:
 
