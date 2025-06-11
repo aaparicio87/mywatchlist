@@ -1,5 +1,13 @@
 # MyWatchlist
 
+```
+Mobile application called MyWatchlist that allows users to browse, search, and
+favorite financial instruments (e.g., stocks, crypto, forex). The app should simulate a
+minimal version of a trading watchlist tool, emphasizing real-time UI updates, state
+management, and clean architecture.
+
+```
+
 ### Prerequisites
 
 What things do we need to run the project.
